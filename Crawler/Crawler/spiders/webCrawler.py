@@ -1,5 +1,6 @@
-# Importing Path to save data in files
-from pathlib import Path, PurePath
+# Libraries usefor fot threating the data
+from pathlib import Path
+from bs4 import BeautifulSoup
 # Importing scrapy
 import scrapy
 
@@ -46,3 +47,9 @@ class webCrawler(scrapy.Spider):
 
         # Loging the succesful save
         self.log(f"Saved file {filename}")
+
+    # Method to get the inner text of any selector
+    def innertext(selector):
+        html = selector.get()
+        soup = BeautifulSoup(html, 'html.parser')
+        return soup.get_text().replace('\n', '').strip()
